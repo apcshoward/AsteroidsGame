@@ -11,8 +11,8 @@ public void draw()
 { 
  background(0);
 }
-  spaceDandy.show();
-  spaceDandy.move();
+  Gar.show();
+  Gar.move();
   //your code here
 }
 class SpaceShip //extends Floater  
