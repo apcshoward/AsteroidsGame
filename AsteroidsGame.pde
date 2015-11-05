@@ -1,15 +1,42 @@
-//your variable declarations here
+//your variable declarations here 
+SpaceShip Gar = new SpaceShip();
 public void setup() 
-{
+{ 
+size(600,600);  
+}
+  f = createFont("Arial",16,true); // Arial, 16 point, anti-aliasing on
   //your code here
 }
 public void draw() 
-{
+{ 
+ background(0);
+}
+  spaceDandy.show();
+  spaceDandy.move();
   //your code here
 }
 class SpaceShip //extends Floater  
 {   
-    //your code here
+    //your code here 
+    public SpaceShip() {
+    corners = 4;
+    xCorners = new int[corners];
+    yCorners = new int[corners];
+    xCorners[0] = -2;
+    yCorners[0] = 0;
+    xCorners[1] = -8;
+    yCorners[1] = 8;
+    xCorners[2] = 16;
+    yCorners[2] = 0;
+    xCorners[3] = -8;
+    yCorners[3] = -8;
+    myColor = color(255, 255, 255);
+    myCenterX = 300;
+    myCenterY = 300;
+    myDirectionX = 0;
+    myDirectionY = 0;
+    myPointDirection = 0;
+
 }
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
 {   
@@ -47,27 +74,22 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
   }   
   public void move ()   //move the floater in the current direction of travel
   {      
-    //change the x and y coordinates by myDirectionX and myDirectionY       
-    myCenterX += myDirectionX;    
-    myCenterY += myDirectionY;     
+   rotate(rotSpeed);
+    super.move();
+  }
 
-    //wrap around screen    
-    if(myCenterX >width)
-    {     
-      myCenterX = 0;    
-    }    
-    else if (myCenterX<0)
-    {     
-      myCenterX = width;    
-    }    
-    if(myCenterY >height)
-    {    
-      myCenterY = 0;    
-    }   
-    else if (myCenterY < 0)
-    {     
-      myCenterY = height;    
-    }   
+  public void setX(int x){myCenterX = x;}    
+  public void setY(int y){myCenterY = y;}
+  public void setDirectionX(double x) {myDirectionX = x;}
+  public void setDirectionY(double y){myDirectionY = y;} 
+  public void setPointDirection(int degrees) {myPointDirection = degrees;}    
+
+  public int getX() {return (int)myCenterX;}
+  public int getY() {return (int)myCenterY;}
+  public double getDirectionX() {return myDirectionX;}   
+  public double getDirectionY() {return myDirectionY;}   
+  public double getPointDirection() {return myPointDirection;} 
+
   }   
   public void show ()  //Draws the floater at the current position  
   {             
