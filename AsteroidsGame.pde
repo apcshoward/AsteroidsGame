@@ -1,5 +1,5 @@
 //your variable declarations here 
-
+Asteroid [] doritos;
 Star [] starfield;
 SpaceShip gar;
 public boolean upKey = false;
@@ -11,17 +11,21 @@ public void setup()
   size(600,600);
   background(0);
   gar = new SpaceShip(); 
-
-
   starfield = new Star[175];
   for(int i = 0; i < starfield.length; i++)
-    starfield[i] = new Star();
+  starfield[i] = new Star(); 
+    doritos = new Asteroid [20]; 
+     for( int i = 0; i < asteroidField.length; i++)  
+     doritos[i] = new Asteroid();
 }
 public void draw() 
 {
   background(0);
   for(int i = 0; i < starfield.length; i++)
-    starfield[i].show();
+    starfield[i].show(); 
+     for( int i = 0; i < doritos.length; i++)
+    doritos[i].show();
+    doritos[i].move();
   gar.show();
   gar.move();
   if(upKey == true) gar.accelerate(Math.random()*0.18);
@@ -89,7 +93,37 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
   abstract public void setDirectionY(double y);   
   abstract public double getDirectionY();   
   abstract public void setPointDirection(double degrees);   
-  abstract public double getPointDirection(); 
+  abstract public double getPointDirection();  
+  }
+
+class Asteroid extends Floater
+{
+  private int myRotSpeed;
+  Asteroid()
+  {
+    corners = 6;
+    xCorners = new int[corners];
+    yCorners = new int[corners];
+    xCorners[0] = -11;
+    yCorners[0] = -8;
+    xCorners[1] = 7;
+    yCorners[1] = -8;
+    xCorners[2] = 13;
+    yCorners[2] = 0;
+    xCorners[3] = 6;
+    yCorners[3] = 10;
+    xCorners[4] = -11;
+    yCorners[4] = 8;
+    xCorners[5] = -5;
+    yCorners[5] = 0;
+    myColor = color(255,0,0);
+    myCenterX = (int)(Math.random()*width);
+    myCenterY = (int)(Math.random()*height);
+    myDirectionX = (Math.random()*2)-1;
+    myDirectionY = (Math.random()*2)-1;
+    myPointDirection = 0;
+    myRotSpeed = (int)((Math.random()*10) - 5);                 
+  }
   //Accelerates the floater in the direction it is pointing (myPointDirection)   
   public void accelerate (double dAmount)   
   {          
