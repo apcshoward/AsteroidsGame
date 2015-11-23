@@ -38,7 +38,7 @@ public void draw()
   if(rightKey == true) gar.rotate(5); 
   for(int i = 0; i < asteroidList.size(); i++)
   {
-    if( dist(asteroidList.get(i).getX(), asteroidList.get(i).getY(), milleniumFalcon.getX(), milleniumFalcon.getY())<20 )
+    if( dist(asteroidList.get(i).getX(), asteroidList.get(i).getY(), gar.getX(), gar.getY())<20 )
       asteroidList.remove(i);
   }
   if(asteroidList.size()<1)
@@ -101,7 +101,7 @@ class Asteroid extends Floater
     // xCorners[4] = (int)(-3*1.3); yCorners[4] = (int)(1.3*8); 
     // xCorners[5] = -(int)(1.3*Math.random()*10+3); yCorners[5] = (int)(1.3*Math.random()*10-5);
     mySize = (int)(Math.random()*0.01*width)+4; 
-    corners = (int)(Math.random()*4)+4; 
+    corners = (int)(Math.random()*1)+3; 
     xCorners = new int[corners];
     yCorners = new int[corners];
     //coordinates for the corners of ship
@@ -112,7 +112,7 @@ class Asteroid extends Floater
       yCorners[i] = 3*(int)(randomizer*mySize*Math.sin(i*(2*Math.PI/(1*corners)))); //goes around the backwards unit circle
     }
 
-    myColor = color(120,80,55);
+    myColor = color(238,221,130);
     rotSpeed = (int)(Math.random()*6)+2;
     myCenterX = (int)(Math.random()*600);
     myCenterY = (int)(Math.random()*600);
@@ -219,7 +219,7 @@ class Star
   public void show()
   {
     noStroke();
-    fill(255,255,255,random(40,100));
+    fill(240,120,140,random(40,100));
     ellipse(myX, myY, (float)mySize, (float)mySize);
   }
 }
