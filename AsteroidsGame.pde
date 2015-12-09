@@ -1,6 +1,7 @@
 //your variable declarations here 
 Star [] starfield; 
-ArrayList <Asteroid> asteroidList;
+ArrayList <Asteroid> asteroidList; 
+ArrayList <Bullets> bullet;
 SpaceShip gar; 
 public boolean upKey = false;
 public boolean leftKey = false;
@@ -18,8 +19,16 @@ public void setup()
   for(int i = 0; i < starfield.length; i++)
     starfield[i] = new Star(); 
     for(int j = 0; j < 10; j++)
-    asteroidList.add(j, new Asteroid());
-}
+    asteroidList.add(j, new Asteroid()); 
+    bullet = new ArrayList <Bullets>();
+} 
+public void mousePressed()
+{
+ if (mousePressed == true && goodGame == false)
+   {
+    bullet.add(new Bullets(ship));
+   }
+   }
 public void draw() 
 {
   background(0);
@@ -29,7 +38,13 @@ public void draw()
      { 
          asteroidList.get(j).move();
     asteroidList.get(j).show();
-  }
+  } 
+  {
+   for (int i=0; i< bullet.size(); i++)
+   {
+     bullet.get(i).show();
+     bullet.get(i).move();
+   }
   gar.show();
   gar.move();
   if(upKey == true) gar.accelerate(Math.random()*0.18);
@@ -120,7 +135,38 @@ class Asteroid extends Floater
     myDirectionY = Math.random()*4-2;
     myPointDirection = (Math.random()*360-180);
 
-  }
+  } 
+  class Bullets extends Floater
+{
+public void setX(int x) {myCenterX = x;} 
+public int getX() {return (int)myCenterX;}
+public void setY(int y) {myCenterY = y;}
+public int getY() {return (int)myCenterY;}
+public void setDirectionX(double x) {myDirectionX = x;}  
+public double getDirectionX() {return myDirectionX;}
+public void setDirectionY(double y) {myDirectionY = y;}    
+public double getDirectionY() {return myDirectionY;} 
+public void setPointDirection(int degrees) {myPointDirection = degrees;} 
+public double getPointDirection() {return myPointDirection;}
+
+public Bullets(SpaceShip theShip)
+{
+   myCenterX = theShip.getX();
+   myCenterY = theShip.getY();
+   myPointDirection = theShip.getPointDirection();
+   double dRadians =myPointDirection*(Math.PI/180);
+   myDirectionX = 5 * Math.cos(dRadians) + theShip.getDirectionX();
+   myDirectionY = 5 * Math.sin(dRadians) + theShip.getDirectionY();
+ }
+
+public void show()
+
+
+{
+   fill(255,0,0);
+   noStroke();
+   ellipse((float)myCenterX, (float)myCenterY, 5, 5);
+ }
  public void move()
   {
     rotate(rotSpeed);
