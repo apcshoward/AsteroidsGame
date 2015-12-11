@@ -356,8 +356,8 @@ class Star
   }
   void show()
   {
-  fill(240,120,140);
-  ellipse(x,y,2,2);  
+  fill(178,134,11);
+  ellipse(x,y,3,3);  
   }
 }
 
@@ -409,7 +409,7 @@ class Bullet extends Floater
     double dRadians = myPointDirection*(Math.PI/180);
     myDirectionX = 5 * Math.cos(dRadians) + bob.getDirectionX();
     myDirectionY = 5 * Math.sin(dRadians) + bob.getDirectionY();
-    myAge = 5;
+    myAge = 0;
   }
   public void setX(int x){myCenterX=x;}
   public int getX(){return (int)myCenterX;}
@@ -427,8 +427,8 @@ class Bullet extends Floater
   public void show()
   { 
 
-   fill(0,210,210);
-   stroke( 250, 250, 250);
+   fill(255,0,0);
+   stroke( 34, 139, 34);
    ellipse((float)myCenterX,(float)myCenterY,10,10);
    myAge++;
 
