@@ -30,7 +30,7 @@ public void draw()
 {
   if (gg == false)
   {
-  background(0);
+  background(218,165,32);
   bob.show();
   bob.move();
   if(leftIsPressed==true){
@@ -93,10 +93,10 @@ public void draw()
   }
   else
   {
-  background(0);
+  background(107,142,35);
   fill(250,0,0);
   text("gg",225,250);
-  text("Press R to Restart",210,270);
+  text("Press R to restart",210,270);
   bob.setX(250); 
   bob.getX();
   bob.setY(250);
@@ -369,18 +369,18 @@ private int rotspeed;
   corners = 3;
   xCorners = new int [corners];
   yCorners = new int [corners]; 
-  xCorners[0]=-5;
-  yCorners[0]=-6;
-  xCorners[1]=3;
-  yCorners[1]=-6;
-  xCorners[2]=6;
-  yCorners[2]=5;
+  xCorners[0]=-20;
+  yCorners[0]=-20;
+  xCorners[1]=20;
+  yCorners[1]=-20;
+  xCorners[2]=20;
+  yCorners[2]=20;
   myColor=color(238,221,130);
   myCenterX = (int)(Math.random()*500)+1; 
   myCenterY = (int)(Math.random()*500)+1;   
   myDirectionX=(int)(Math.random()*10)-5;
   myDirectionY=(int)(Math.random()*10)-5;  
-  rotspeed=(int)(Math.random()*10)+1;
+  rotspeed=(int)(Math.random()*4)+2;
   }
   public void setX(int x){myCenterX=x;}
   public int getX(){return (int)myCenterX;}
@@ -409,7 +409,7 @@ class Bullet extends Floater
     double dRadians = myPointDirection*(Math.PI/180);
     myDirectionX = 5 * Math.cos(dRadians) + bob.getDirectionX();
     myDirectionY = 5 * Math.sin(dRadians) + bob.getDirectionY();
-    myAge = 0;
+    myAge = 5;
   }
   public void setX(int x){myCenterX=x;}
   public int getX(){return (int)myCenterX;}
@@ -425,10 +425,11 @@ class Bullet extends Floater
     return myAge;
   }
   public void show()
-  {
-   fill(0,0,250);
-   stroke(0, 0, 250);
-   ellipse((float)myCenterX,(float)myCenterY,5,5);
+  { 
+
+   fill(0,210,210);
+   stroke( 250, 250, 250);
+   ellipse((float)myCenterX,(float)myCenterY,10,10);
    myAge++;
 
   }
